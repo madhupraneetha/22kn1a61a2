@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple TradingView-like Web Page</title>
+    <!-- Include necessary CSS files -->
+    <link rel="stylesheet" href="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .chart-container {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Simple TradingView-like Web Page</h1>
+        <!-- Add navigation or other header content here -->
+    </header>
+
+    <main>
+        <div class="chart-container" id="tradingview-chart"></div>
+    </main>
+
+    <!-- Include necessary JavaScript files -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize a chart using Lightweight Charts library
+            const chart = LightweightCharts.createChart(document.getElementById('tradingview-chart'), {
+                width: document.documentElement.clientWidth,
+                height: 600, // Same as .chart-container height
+                layout: {
+                    backgroundColor: '#F5F5F5',
+                },
+                grid: {
+                    vertLines: {
+                        color: '#E8E8E8',
+                    },
+                    horzLines: {
+                        color: '#E8E8E8',
+                    },
+                },
+                crosshair: {
+                    mode: LightweightCharts.CrosshairMode.Normal,
+                },
+            });
+
+            // Add a simple line series to the chart
+            const lineSeries = chart.addLineSeries({
+                color: '#3366FF',
+                lineWidth: 2,
+            });
+
+            // Example data (replace with real data fetching and updating)
+            const data = [
+                { time: '2024-06-28', value: 100 },
+                { time: '2024-06-29', value: 110 },
+                { time: '2024-06-30', value: 120 },
+                // Add more data points as needed
+            ];
+
+            // Load data into the series
+            lineSeries.setData(data);
+        });
+    </script>
+</body>
+</html>
